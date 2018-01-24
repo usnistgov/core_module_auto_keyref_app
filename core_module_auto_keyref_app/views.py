@@ -5,17 +5,17 @@ from core_module_auto_keyref_app.components.auto_keyref import api as auto_keyre
 from core_module_auto_keyref_app.components.auto_keyref.models import AutoKeyref
 from core_parser_app.components.data_structure_element import api as data_structure_element_api
 from core_parser_app.tools.modules.exceptions import ModuleError
-from core_parser_app.tools.modules.views.builtin.options_module import OptionsModule
+from core_parser_app.tools.modules.views.builtin.options_module import AbstractOptionsModule
 
 
-class AutoKeyRefModule(OptionsModule):
+class AutoKeyRefModule(AbstractOptionsModule):
     def __init__(self):
         """ Initialize module
 
         """
         self.selected = None
         self.values = []
-        OptionsModule.__init__(self, options={}, scripts=['core_module_auto_keyref_app/js/autokey.js'])
+        AbstractOptionsModule.__init__(self, options={}, scripts=['core_module_auto_keyref_app/js/autokey.js'])
 
     def _render_module(self, request):
         """ Return module's rendering
@@ -33,7 +33,7 @@ class AutoKeyRefModule(OptionsModule):
             self.options.update({str(value): str(value)})
 
         self.selected = self.data
-        return OptionsModule._render_module(self, request)
+        return AbstractOptionsModule._render_module(self, request)
 
     def _retrieve_data(self, request):
         """ Retrieve module's data
