@@ -18,3 +18,9 @@ Quick start
 
     PARSER_AUTO_KEY_KEYREF = True
 
+2. Include the core_module_auto_keyref_app URLconf in your project urls.py
+---------------------------------------------------------------------
+
+.. code:: python
+
+    url(r'^', include('core_module_auto_keyref_app.urls')),
