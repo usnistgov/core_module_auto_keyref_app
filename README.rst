@@ -7,7 +7,7 @@ Quick start
 ===========
 
 1. Add "core_module_auto_keyref_app" to your INSTALLED_APPS setting
-----------------------------------------------------------
+-------------------------------------------------------------------
 
 .. code:: python
 
@@ -19,7 +19,7 @@ Quick start
     PARSER_AUTO_KEY_KEYREF = True
 
 2. Include the core_module_auto_keyref_app URLconf in your project urls.py
----------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 .. code:: python
 
