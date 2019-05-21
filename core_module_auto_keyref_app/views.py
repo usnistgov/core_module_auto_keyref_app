@@ -102,7 +102,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
                 # get data from db
                 elif 'data' in module.options and module.options['data'] is not None:
                     data = str(module.options['data'])
-            except Exception, e:
+            except Exception as e:
                 raise ModuleError("An unexpected error occurred in AutoKeyrefModule: " + e.message)
 
         elif request.method == 'POST':
