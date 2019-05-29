@@ -1,5 +1,6 @@
 """ Auto keyref module views
 """
+from builtins import str
 from core_module_auto_key_app.components.auto_key import api as auto_key_api
 from core_module_auto_keyref_app.components.auto_keyref import api as auto_keyref_api
 from core_module_auto_keyref_app.components.auto_keyref.models import AutoKeyref
@@ -66,7 +67,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
                     auto_keyref_api.upsert(auto_keyref)
 
                 # if keyref id not already present
-                if keyref_id not in auto_keyref.keyrefs.keys():
+                if keyref_id not in list(auto_keyref.keyrefs.keys()):
                     # initialize keyref entry
                     auto_keyref.keyrefs[keyref_id] = []
 
@@ -103,7 +104,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
                 elif 'data' in module.options and module.options['data'] is not None:
                     data = str(module.options['data'])
             except Exception as e:
-                raise ModuleError("An unexpected error occurred in AutoKeyrefModule: " + e.message)
+                raise ModuleError("An unexpected error occurred in AutoKeyrefModule: " + str(e))
 
         elif request.method == 'POST':
             if 'data' in request.POST:

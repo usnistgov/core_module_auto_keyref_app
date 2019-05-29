@@ -35,7 +35,7 @@ def get_updated_keys(request):
         auto_key = auto_key_api.get_by_root(root_element)
 
         # go through all existing keys
-        for key, module_ids in auto_key.keys.iteritems():
+        for key, module_ids in auto_key.keys.items():
             # get list of current module ids
             current_module_ids = _get_current_module_ids(module_ids)
             # update list of module ids in auto key manager
@@ -48,7 +48,7 @@ def get_updated_keys(request):
         auto_keyref = auto_keyref_api.get_by_root(root_element)
 
         # go through all existing keyrefs
-        for keyref, module_ids in auto_keyref.keyrefs.iteritems():
+        for keyref, module_ids in auto_keyref.keyrefs.items():
             # get list of current module ids
             current_module_ids = _get_current_module_ids(module_ids)
             # update list of module ids in auto keyref manager
@@ -59,7 +59,7 @@ def get_updated_keys(request):
 
         # get the list of keyrefs to update
         updated_keyrefs = []
-        for keyref, module_ids in auto_keyref.keyrefs.iteritems():
+        for keyref, module_ids in auto_keyref.keyrefs.items():
             updated_keyrefs.extend(module_ids)
     except Exception as e:
         raise ModuleError("An unexpected error occurred while getting updated list of keys: " + e.message)
