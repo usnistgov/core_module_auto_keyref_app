@@ -62,7 +62,7 @@ def get_updated_keys(request):
         for keyref, module_ids in auto_keyref.keyrefs.items():
             updated_keyrefs.extend(module_ids)
     except Exception as e:
-        raise ModuleError("An unexpected error occurred while getting updated list of keys: " + e.message)
+        raise ModuleError("An unexpected error occurred while getting updated list of keys: " + str(e))
 
     return HttpResponse(json.dumps(updated_keyrefs), content_type='application/javascript')
 
