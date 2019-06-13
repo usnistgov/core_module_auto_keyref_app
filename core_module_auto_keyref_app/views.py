@@ -1,6 +1,5 @@
 """ Auto keyref module views
 """
-from builtins import str
 from core_module_auto_key_app.components.auto_key import api as auto_key_api
 from core_module_auto_keyref_app.components.auto_keyref import api as auto_keyref_api
 from core_module_auto_keyref_app.components.auto_keyref.models import AutoKeyref
