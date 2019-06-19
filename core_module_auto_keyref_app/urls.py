@@ -2,8 +2,8 @@
 """
 from django.conf.urls import url
 
-from core_module_auto_keyref_app.views import AutoKeyRefModule
 from core_module_auto_keyref_app.ajax import get_updated_keys
+from core_module_auto_keyref_app.views import AutoKeyRefModule
 
 urlpatterns = [
     url(r'module-auto-keyref', AutoKeyRefModule.as_view(), name='core_auto_keyref_view'),
