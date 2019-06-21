@@ -1,13 +1,17 @@
 """ Auto keyref ajax functions
 """
 import json
+import logging
 
 from django.http.response import HttpResponse
 
+from core_main_app.commons.exceptions import DoesNotExist
 from core_module_auto_key_app.components.auto_key import api as auto_key_api
 from core_module_auto_keyref_app.components.auto_keyref import api as auto_keyref_api
 from core_parser_app.components.data_structure_element import api as data_structure_element_api
 from core_parser_app.tools.modules.exceptions import ModuleError
+
+logger = logging.getLogger(__name__)
 
 
 def get_updated_keys(request):
@@ -85,6 +89,7 @@ def _get_current_module_ids(module_ids):
             data_structure_element_api.get_by_id(module_id)
             # add id to list if element still exists
             current_module_ids.append(module_id)
-        except Exception:
-            pass
+        except DoesNotExist as e:
+            logger.warning("_get_current_module_ids threw an exception: {0}".format(str(e)))
+
     return current_module_ids
