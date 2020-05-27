@@ -8,7 +8,9 @@ from django.http.response import HttpResponse
 from core_main_app.commons.exceptions import DoesNotExist
 from core_module_auto_key_app.components.auto_key import api as auto_key_api
 from core_module_auto_keyref_app.components.auto_keyref import api as auto_keyref_api
-from core_parser_app.components.data_structure_element import api as data_structure_element_api
+from core_parser_app.components.data_structure_element import (
+    api as data_structure_element_api,
+)
 from core_parser_app.tools.modules.exceptions import ModuleError
 
 logger = logging.getLogger(__name__)
@@ -31,7 +33,7 @@ def get_updated_keys(request):
     """
     try:
         # get root id
-        root_id = request.GET['root_id']
+        root_id = request.GET["root_id"]
         # get root element from id
         root_element = data_structure_element_api.get_by_id(root_id)
 
@@ -66,9 +68,13 @@ def get_updated_keys(request):
         for keyref, module_ids in auto_keyref.keyrefs.items():
             updated_keyrefs.extend(module_ids)
     except Exception as e:
-        raise ModuleError("An unexpected error occurred while getting updated list of keys: " + str(e))
+        raise ModuleError(
+            "An unexpected error occurred while getting updated list of keys: " + str(e)
+        )
 
-    return HttpResponse(json.dumps(updated_keyrefs), content_type='application/javascript')
+    return HttpResponse(
+        json.dumps(updated_keyrefs), content_type="application/javascript"
+    )
 
 
 def _get_current_module_ids(module_ids):
@@ -90,6 +96,8 @@ def _get_current_module_ids(module_ids):
             # add id to list if element still exists
             current_module_ids.append(module_id)
         except DoesNotExist as e:
-            logger.warning("_get_current_module_ids threw an exception: {0}".format(str(e)))
+            logger.warning(
+                "_get_current_module_ids threw an exception: {0}".format(str(e))
+            )
 
     return current_module_ids
