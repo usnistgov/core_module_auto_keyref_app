@@ -14,9 +14,7 @@ from core_parser_app.tools.modules.views.builtin.options_module import (
 
 class AutoKeyRefModule(AbstractOptionsModule):
     def __init__(self):
-        """ Initialize module
-
-        """
+        """Initialize module"""
         self.selected = None
         self.values = []
         AbstractOptionsModule.__init__(
@@ -24,7 +22,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
         )
 
     def _render_module(self, request):
-        """ Return module's rendering
+        """Return module's rendering
 
         Args:
             request:
@@ -42,7 +40,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
         return AbstractOptionsModule._render_module(self, request)
 
     def _retrieve_data(self, request):
-        """ Retrieve module's data
+        """Retrieve module's data
 
         Args:
             request:
@@ -120,7 +118,7 @@ class AutoKeyRefModule(AbstractOptionsModule):
         return data
 
     def _render_data(self, request):
-        """ Return module's data rendering
+        """Return module's data rendering
 
         Args:
             request:

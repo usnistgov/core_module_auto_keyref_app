@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_updated_keys(request):
-    """ Return current keys
+    """Return current keys
 
         updated_keys[key] = {'ids': [],
                             'tagIDs': []}
@@ -78,7 +78,7 @@ def get_updated_keys(request):
 
 
 def _get_current_module_ids(module_ids):
-    """ Return list of module ids still present in the data structure
+    """Return list of module ids still present in the data structure
 
     Args:
         module_ids:
