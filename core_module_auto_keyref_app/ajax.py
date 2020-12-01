@@ -35,7 +35,7 @@ def get_updated_keys(request):
         # get root id
         root_id = request.GET["root_id"]
         # get root element from id
-        root_element = data_structure_element_api.get_by_id(root_id)
+        root_element = data_structure_element_api.get_by_id(root_id, request)
 
         # get auto key manager from root
         auto_key = auto_key_api.get_by_root(root_element)
@@ -43,7 +43,7 @@ def get_updated_keys(request):
         # go through all existing keys
         for key, module_ids in auto_key.keys.items():
             # get list of current module ids
-            current_module_ids = _get_current_module_ids(module_ids)
+            current_module_ids = _get_current_module_ids(module_ids, request)
             # update list of module ids in auto key manager
             auto_key.keys[key] = current_module_ids
 
@@ -56,7 +56,7 @@ def get_updated_keys(request):
         # go through all existing keyrefs
         for keyref, module_ids in auto_keyref.keyrefs.items():
             # get list of current module ids
-            current_module_ids = _get_current_module_ids(module_ids)
+            current_module_ids = _get_current_module_ids(module_ids, request)
             # update list of module ids in auto keyref manager
             auto_keyref.keyrefs[keyref] = current_module_ids
 
@@ -77,7 +77,7 @@ def get_updated_keys(request):
     )
 
 
-def _get_current_module_ids(module_ids):
+def _get_current_module_ids(module_ids, request):
     """Return list of module ids still present in the data structure
 
     Args:
@@ -92,7 +92,7 @@ def _get_current_module_ids(module_ids):
     for module_id in module_ids:
         try:
             # try to get element
-            data_structure_element_api.get_by_id(module_id)
+            data_structure_element_api.get_by_id(module_id, request)
             # add id to list if element still exists
             current_module_ids.append(module_id)
         except DoesNotExist as e:

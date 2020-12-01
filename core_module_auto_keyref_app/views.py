@@ -55,12 +55,14 @@ class AutoKeyRefModule(AbstractOptionsModule):
                 # get module id
                 module_id = request.GET["module_id"]
                 # get module element from module id
-                module = data_structure_element_api.get_by_id(module_id)
+                module = data_structure_element_api.get_by_id(module_id, request)
                 # get keyref id in moduke
                 keyref_id = module.options["params"]["keyref"]
 
                 # get XML document root element
-                root_element = data_structure_element_api.get_root_element(module)
+                root_element = data_structure_element_api.get_root_element(
+                    module, request
+                )
                 try:
                     # get auto keyref manager by root
                     auto_keyref = auto_keyref_api.get_by_root(root_element)
@@ -96,7 +98,9 @@ class AutoKeyRefModule(AbstractOptionsModule):
 
                 self.values = []
                 for key_module_id in modules_ids:
-                    key_module = data_structure_element_api.get_by_id(key_module_id)
+                    key_module = data_structure_element_api.get_by_id(
+                        key_module_id, request
+                    )
                     if key_module.options["data"] is not None:
                         self.values.append(key_module.options["data"])
 
